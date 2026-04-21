@@ -1,26 +1,147 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&display=swap");
+
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-heading: "Plus Jakarta Sans", sans-serif;
+  --font-sans: "Inter", sans-serif;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .signature-gradient {
+    background: radial-gradient(circle at 45% 45%, #235c44 0%, #03442e 100%);
+  }
+
+  button.signature-gradient,
+  a.signature-gradient,
+  .signature-gradient-hover {
+    transition: all 0.3s ease;
+  }
+
+  button.signature-gradient:hover,
+  a.signature-gradient:hover,
+  .signature-gradient-hover:hover {
+    background: radial-gradient(circle at 45% 45%, #2d7055 0%, #045c3e 100%);
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+  }
+
+  .glass-panel {
+    background: rgba(248, 249, 250, 0.8);
+    backdrop-filter: blur(24px);
+  }
+
+  .ghost-border {
+    border: 1px solid rgba(192, 201, 187, 0.15);
+  }
+
+  .hatched-pattern {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(27, 109, 36, 0.05) 10px,
+      rgba(27, 109, 36, 0.05) 20px
+    );
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  --background: #f8f9fa;
+  --foreground: #191c1d;
+  --card: #ffffff;
+  --card-foreground: #191c1d;
+  --popover: #ffffff;
+  --popover-foreground: #191c1d;
+  --primary: #03442e;
+  --primary-foreground: #ffffff;
+  --secondary: #1b6d24;
+  --secondary-foreground: #ffffff;
+  --muted: #f3f4f5;
+  --muted-foreground: #41493e;
+  --accent: #f3f4f5;
+  --accent-foreground: #03442e;
+  --destructive: #ba1a1a;
+  --border: rgba(192, 201, 187, 0.15);
+  --input: #f3f4f5;
+  --ring: #03442e;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: #0a0c0b;
+  --foreground: #e1e3e0;
+  --card: #111412;
+  --card-foreground: #e1e3e0;
+  --popover: #111412;
+  --popover-foreground: #e1e3e0;
+  --primary: #86d9b1;
+  --primary-foreground: #003824;
+  --secondary: #89d88d;
+  --secondary-foreground: #00390f;
+  --muted: #1d211e;
+  --muted-foreground: #bfc9ba;
+  --accent: #1d211e;
+  --accent-foreground: #86d9b1;
+  --destructive: #ffb4ab;
+  --border: rgba(192, 201, 187, 0.1);
+  --input: #1d211e;
+  --ring: #86d9b1;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading tracking-tight;
+  }
 }
