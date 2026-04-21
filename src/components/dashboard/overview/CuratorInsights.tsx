@@ -13,7 +13,7 @@ export function CuratorInsights() {
         </p>
         <Button
           variant="ghost"
-          className="text-primary w-full rounded-xl border-none bg-white py-4 font-bold transition-all hover:bg-white/90 hover:shadow-lg"
+          className="text-primary w-full rounded-xl border-none bg-white py-4 font-bold transition-all hover:bg-white/90 hover:shadow-lg dark:bg-[#03442e]"
         >
           View Full Report
           <ArrowUpRight className="ml-2 h-5 w-5" />

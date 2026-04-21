@@ -40,7 +40,7 @@ export default function LoginPage() {
 
             {/* Google Auth Button */}
             <Link href="/dashboard">
-              <Button className="signature-gradient group relative flex h-auto w-full items-center justify-center gap-3 overflow-hidden rounded-lg px-6 py-7 font-semibold text-white transition-all active:scale-[0.98]">
+              <Button className="signature-gradient group relative flex h-auto w-full items-center justify-center gap-3 overflow-hidden rounded-lg px-6 py-3 font-semibold text-white transition-all active:scale-[0.98]">
                 <div className="flex items-center justify-center rounded-full bg-white p-1.5">
                   <svg className="h-4 w-4" viewBox="0 0 24 24">
                     <path

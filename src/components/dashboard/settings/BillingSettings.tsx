@@ -15,7 +15,7 @@ export function BillingSettings() {
             Your next billing date is April 24, 2024 for $14.00.
           </p>
         </div>
-        <Button className="text-primary h-auto rounded-xl bg-white px-10 py-7 text-base font-bold shadow-xl transition-all hover:bg-slate-50">
+        <Button className="text-primary h-auto rounded-xl bg-white px-10 py-3 text-base font-bold shadow-xl transition-all hover:bg-slate-50">
           Manage Subscription
         </Button>
       </div>

@@ -9,7 +9,7 @@ export function QuickActions() {
       <div className="space-y-4">
         <Button
           variant="outline"
-          className="border-border hover:bg-muted group h-auto w-full justify-start rounded-xl py-7 transition-all"
+          className="border-border hover:bg-muted group h-auto w-full justify-start rounded-xl py-3 transition-all"
         >
           <div className="bg-secondary/10 text-secondary group-hover:bg-secondary mr-4 flex h-10 w-10 items-center justify-center rounded-lg transition-colors group-hover:text-white">
             <FileText className="h-5 w-5" />
@@ -18,7 +18,7 @@ export function QuickActions() {
         </Button>
         <Button
           variant="outline"
-          className="border-border hover:bg-muted group h-auto w-full justify-start rounded-xl py-7 transition-all"
+          className="border-border hover:bg-muted group h-auto w-full justify-start rounded-xl py-3 transition-all"
         >
           <div className="bg-primary/10 text-primary group-hover:bg-primary mr-4 flex h-10 w-10 items-center justify-center rounded-lg transition-colors group-hover:text-white">
             <Users className="h-5 w-5" />

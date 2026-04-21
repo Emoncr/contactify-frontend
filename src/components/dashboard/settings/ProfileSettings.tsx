@@ -60,11 +60,11 @@ export function ProfileSettings() {
         <div className="flex flex-col justify-end gap-4 md:flex-row">
           <Button
             variant="ghost"
-            className="text-muted-foreground hover:text-primary h-auto py-6 text-sm font-bold"
+            className="text-muted-foreground hover:text-primary py-3 text-sm font-bold"
           >
             Cancel
           </Button>
-          <Button className="bg-primary h-auto rounded-xl px-10 py-6 text-base font-bold text-white shadow-lg transition-all hover:opacity-90">
+          <Button className="bg-primary rounded-xl px-6 py-3 text-base font-bold text-white shadow-lg transition-all hover:opacity-90">
             <Save className="mr-2 h-5 w-5" />
             Save Changes
           </Button>
