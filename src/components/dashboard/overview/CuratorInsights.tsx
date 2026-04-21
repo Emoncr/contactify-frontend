@@ -11,7 +11,10 @@ export function CuratorInsights() {
           Your conversion rate is up 4% this week. Consider optimizing your &apos;Contact Us&apos;
           form.
         </p>
-        <Button className="text-primary h-auto w-full rounded-xl bg-white py-7 text-base font-bold shadow-lg transition-all hover:bg-slate-50">
+        <Button
+          variant="ghost"
+          className="text-primary w-full rounded-xl border-none bg-white py-4 font-bold transition-all hover:bg-white/90 hover:shadow-lg"
+        >
           View Full Report
           <ArrowUpRight className="ml-2 h-5 w-5" />
         </Button>

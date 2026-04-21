@@ -16,7 +16,8 @@ export function FinalCTA() {
           <Link href="/login" className="inline-block w-full sm:w-auto">
             <Button
               size="lg"
-              className="text-primary h-auto w-full rounded-xl border-none bg-white px-10 py-6 text-xl font-bold transition-all hover:-translate-y-0.5 hover:shadow-xl sm:w-auto"
+              variant="ghost"
+              className="text-primary h-auto w-full rounded-xl border-none bg-white px-10 py-6 text-xl font-bold transition-all hover:-translate-y-0.5 hover:bg-white/90 hover:shadow-xl sm:w-auto"
             >
               Get Started for Free
             </Button>
