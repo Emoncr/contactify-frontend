@@ -86,7 +86,10 @@ export function Pricing() {
                 </li>
               ))}
             </ul>
-            <Button className="text-primary w-full rounded-xl border-none bg-white py-4 font-bold transition-all hover:shadow-lg">
+            <Button
+              variant="ghost"
+              className="text-primary w-full rounded-xl border-none bg-white py-4 font-bold transition-all hover:bg-white/90 hover:shadow-lg"
+            >
               Go Pro Now
             </Button>
           </div>
