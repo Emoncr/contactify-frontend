@@ -13,6 +13,7 @@ import {
   Plus,
   Menu,
   X,
+  Headset,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -104,11 +105,11 @@ export function Sidebar() {
 
       <div className="mb-8 px-6">
         <Button
-          className="bg-primary h-auto w-full rounded-xl py-7 text-base font-bold text-white shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl"
-          aria-label="Create a new lead"
+          className="bg-primary h-auto w-full rounded-xl py-3 text-base font-bold text-white shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl dark:bg-[#03442e]"
+          aria-label="Ask For Support"
         >
-          <Plus className="mr-2 h-5 w-5" aria-hidden="true" />
-          Create New Lead
+          <Headset className="mr-2 h-5 w-5" aria-hidden="true" />
+          Ask For Support
         </Button>
       </div>
 
