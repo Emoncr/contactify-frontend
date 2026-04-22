@@ -1,53 +1,88 @@
 "use client";
 
 import { motion } from "motion/react";
-import { UserPlus, FileText, TrendingUp } from "lucide-react";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { Users, UserPlus, FileText, TrendingUp } from "lucide-react";
 
 const stats = [
-  { label: "Total Leads", value: "1,284", icon: UserPlus, trend: "+12.5%", color: "text-primary" },
-  { label: "Active Forms", value: "12", icon: FileText, trend: "Stable", color: "text-secondary" },
+  {
+    label: "Total Leads",
+    value: "12,842",
+    icon: Users,
+    trend: "+12%",
+    isHero: true,
+  },
+  {
+    label: "New This Month",
+    value: "843",
+    icon: UserPlus,
+    trend: null,
+    isHero: false,
+  },
+  {
+    label: "Active Forms",
+    value: "24",
+    icon: FileText,
+    trend: null,
+    isHero: false,
+  },
   {
     label: "Conversion Rate",
-    value: "24.8%",
+    value: "4.8%",
     icon: TrendingUp,
-    trend: "+4.2%",
-    color: "text-primary",
+    trend: null,
+    isHero: false,
   },
 ];
 
 export function StatsGrid() {
   return (
-    <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+    <div className="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {stats.map((stat, i) => (
         <motion.div
           key={stat.label}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.1 }}
+          transition={{ delay: i * 0.08, duration: 0.4 }}
+          className={
+            stat.isHero
+              ? "signature-gradient relative overflow-hidden rounded-2xl p-6"
+              : "bg-card rounded-2xl p-6"
+          }
         >
-          <Card className="ghost-border rounded-2xl shadow-sm transition-all hover:shadow-md">
-            <CardContent className="p-6">
-              <div className="mb-4 flex items-start justify-between">
-                <div className={cn("bg-muted rounded-xl p-3", stat.color)}>
-                  <stat.icon className="h-6 w-6" />
-                </div>
-                <span
-                  className={cn(
-                    "rounded-full px-2 py-1 text-xs font-bold",
-                    stat.trend.startsWith("+")
-                      ? "bg-secondary/10 text-secondary"
-                      : "bg-muted text-muted-foreground"
-                  )}
-                >
-                  {stat.trend}
-                </span>
-              </div>
-              <CardTitle className="text-primary mb-1 text-3xl font-bold">{stat.value}</CardTitle>
-              <p className="text-muted-foreground text-sm font-medium">{stat.label}</p>
-            </CardContent>
-          </Card>
+          <div className="mb-4 flex items-start justify-between">
+            <div
+              className={
+                stat.isHero
+                  ? "flex h-10 w-10 items-center justify-center rounded-xl bg-white/15"
+                  : "bg-muted flex h-10 w-10 items-center justify-center rounded-xl"
+              }
+            >
+              <stat.icon className={stat.isHero ? "h-5 w-5 text-white" : "text-primary h-5 w-5"} />
+            </div>
+            {stat.trend && (
+              <span className="rounded-full bg-white/20 px-2.5 py-1 text-[11px] font-bold text-white">
+                {stat.trend}
+              </span>
+            )}
+          </div>
+          <div
+            className={
+              stat.isHero
+                ? "font-heading text-[2rem] leading-none font-extrabold text-white"
+                : "text-foreground font-heading text-[2rem] leading-none font-extrabold"
+            }
+          >
+            {stat.value}
+          </div>
+          <p
+            className={
+              stat.isHero
+                ? "mt-1.5 text-sm font-medium text-white/70"
+                : "text-muted-foreground mt-1.5 text-sm font-medium"
+            }
+          >
+            {stat.label}
+          </p>
         </motion.div>
       ))}
     </div>
