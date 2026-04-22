@@ -23,7 +23,7 @@ import { useState } from "react";
 const navItems = [
   { icon: LayoutDashboard, label: "Overview", path: "/dashboard" },
   { icon: Users, label: "Leads", path: "/leads", badge: "1,284" },
-  { icon: FormInput, label: "Forms", path: "#" },
+  { icon: FormInput, label: "Contact Forms", path: "/contact-forms" },
   { icon: Settings, label: "Settings", path: "/settings" },
 ];
 
@@ -135,7 +135,7 @@ export function Sidebar() {
   return (
     <>
       {/* Mobile Toggle */}
-      <div className="fixed top-6 left-6 z-[60] lg:hidden">
+      <div className="fixed top-6 left-6 z-50 lg:hidden">
         <Button
           variant="outline"
           size="icon"
@@ -161,14 +161,14 @@ export function Sidebar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm lg:hidden"
             />
             <motion.aside
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="bg-card border-border fixed top-0 left-0 z-[70] flex h-screen w-72 flex-col border-r lg:hidden"
+              className="bg-card border-border fixed top-0 left-0 z-50 flex h-screen w-72 flex-col border-r lg:hidden"
             >
               <SidebarContent />
             </motion.aside>
