@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { Users, UserPlus, FileText, TrendingUp } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 const stats = [
   {
@@ -43,46 +44,51 @@ export function StatsGrid() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.08, duration: 0.4 }}
-          className={
-            stat.isHero
-              ? "signature-gradient relative overflow-hidden rounded-xl p-6"
-              : "bg-card rounded-xl p-6"
-          }
         >
-          <div className="mb-4 flex items-start justify-between">
+          <Card
+            className={
+              stat.isHero
+                ? "signature-gradient relative overflow-hidden border-none p-6 text-white"
+                : "bg-card p-6"
+            }
+          >
+            <div className="mb-4 flex items-start justify-between">
+              <div
+                className={
+                  stat.isHero
+                    ? "flex h-10 w-10 items-center justify-center rounded-lg bg-white/15"
+                    : "bg-muted flex h-10 w-10 items-center justify-center rounded-lg"
+                }
+              >
+                <stat.icon
+                  className={stat.isHero ? "h-5 w-5 text-white" : "text-primary h-5 w-5"}
+                />
+              </div>
+              {stat.trend && (
+                <span className="rounded-full bg-white/20 px-2.5 py-1 text-[11px] font-bold text-white">
+                  {stat.trend}
+                </span>
+              )}
+            </div>
             <div
               className={
                 stat.isHero
-                  ? "flex h-10 w-10 items-center justify-center rounded-lg bg-white/15"
-                  : "bg-muted flex h-10 w-10 items-center justify-center rounded-lg"
+                  ? "font-heading text-[2rem] leading-none font-extrabold text-white"
+                  : "text-foreground font-heading text-[2rem] leading-none font-extrabold"
               }
             >
-              <stat.icon className={stat.isHero ? "h-5 w-5 text-white" : "text-primary h-5 w-5"} />
+              {stat.value}
             </div>
-            {stat.trend && (
-              <span className="rounded-full bg-white/20 px-2.5 py-1 text-[11px] font-bold text-white">
-                {stat.trend}
-              </span>
-            )}
-          </div>
-          <div
-            className={
-              stat.isHero
-                ? "font-heading text-[2rem] leading-none font-extrabold text-white"
-                : "text-foreground font-heading text-[2rem] leading-none font-extrabold"
-            }
-          >
-            {stat.value}
-          </div>
-          <p
-            className={
-              stat.isHero
-                ? "mt-1.5 text-sm font-medium text-white/70"
-                : "text-muted-foreground mt-1.5 text-sm font-medium"
-            }
-          >
-            {stat.label}
-          </p>
+            <p
+              className={
+                stat.isHero
+                  ? "mt-1.5 text-sm font-medium text-white/70"
+                  : "text-muted-foreground mt-1.5 text-sm font-medium"
+              }
+            >
+              {stat.label}
+            </p>
+          </Card>
         </motion.div>
       ))}
     </div>
