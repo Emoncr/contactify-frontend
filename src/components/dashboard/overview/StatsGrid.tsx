@@ -45,16 +45,16 @@ export function StatsGrid() {
           transition={{ delay: i * 0.08, duration: 0.4 }}
           className={
             stat.isHero
-              ? "signature-gradient relative overflow-hidden rounded-2xl p-6"
-              : "bg-card rounded-2xl p-6"
+              ? "signature-gradient relative overflow-hidden rounded-xl p-6"
+              : "bg-card rounded-xl p-6"
           }
         >
           <div className="mb-4 flex items-start justify-between">
             <div
               className={
                 stat.isHero
-                  ? "flex h-10 w-10 items-center justify-center rounded-xl bg-white/15"
-                  : "bg-muted flex h-10 w-10 items-center justify-center rounded-xl"
+                  ? "flex h-10 w-10 items-center justify-center rounded-lg bg-white/15"
+                  : "bg-muted flex h-10 w-10 items-center justify-center rounded-lg"
               }
             >
               <stat.icon className={stat.isHero ? "h-5 w-5 text-white" : "text-primary h-5 w-5"} />
