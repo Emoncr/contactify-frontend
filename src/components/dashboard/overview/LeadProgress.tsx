@@ -42,7 +42,7 @@ export function LeadProgress() {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-card flex w-full flex-col items-center rounded-2xl p-6 lg:w-[280px]"
+      className="bg-card flex w-full flex-col items-center rounded-xl p-6 lg:w-[280px]"
     >
       <div className="mb-2 w-full">
         <h3 className="text-foreground font-heading text-xl font-bold">Lead Progress</h3>
