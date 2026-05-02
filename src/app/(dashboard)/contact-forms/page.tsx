@@ -1,5 +1,3 @@
-"use client";
-
 import { DashboardHeader } from "@/components/dashboard/shared/DashboardHeader";
 import EmptyDataState from "@/components/dashboard/shared/EmptyDataState";
 import { Button } from "@/components/ui/button";
@@ -8,7 +6,7 @@ import { Inbox, Plus } from "lucide-react";
 import React from "react";
 
 const ContactFormsPage = () => {
-  const { openModal } = useModalStore();
+  const { openModal, closeModal } = useModalStore();
 
   return (
     <>
@@ -35,7 +33,7 @@ const ContactFormsPage = () => {
                         <p className="text-muted-foreground text-sm">Form builder coming soon...</p>
                       </div>
                       <div className="flex justify-end gap-3">
-                        <Button variant="outline" onClick={() => {}}>
+                        <Button variant="outline" onClick={closeModal}>
                           Cancel
                         </Button>
                         <Button>Create Form</Button>
