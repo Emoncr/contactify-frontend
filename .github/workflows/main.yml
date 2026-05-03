@@ -29,21 +29,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # সব branch এর history দরকার
 
-      - name: Create PR
-        id: cpr
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: development
-          base: main
-          title: "🚀 Auto PR: Development to Main"
-          body: "Build successful. Auto-created PR from development branch."
-
-      - name: Auto-merge PR # PR তৈরির সাথে সাথে merge করে দেবে
-        if: steps.cpr.outputs.pull-request-number != ''
-        run: gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --squash --auto
+      - name: Create and Auto-merge PR
+        run: |
+          gh pr create \
+            --base main \
+            --head development \
+            --title "🚀 Auto PR: Development to Main" \
+            --body "Build successful. Auto-created PR from development branch." \
+            || echo "PR already exists"
+          
+          gh pr merge development \
+            --base main \
+            --squash \
+            --auto
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
