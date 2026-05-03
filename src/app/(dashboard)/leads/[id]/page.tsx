@@ -52,7 +52,8 @@ const LEADS_DATA = {
 };
 
 export default function LeadDetails() {
-  const { id } = useParams<{ id: string }>();
+  const params = useParams();
+  const id = params?.id as string;
   const lead = LEADS_DATA[id as keyof typeof LEADS_DATA] || LEADS_DATA["1"];
 
   return (
