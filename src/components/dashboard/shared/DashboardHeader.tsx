@@ -22,7 +22,7 @@ export function DashboardHeader({ title, description }: DashboardHeaderProps) {
             aria-hidden="true"
           />
           <Input
-            className="bg-muted h-10 w-full rounded-xl border-0 pl-10 text-sm shadow-none"
+            className="bg-muted border-input h-11 w-full rounded-xl pl-10 text-sm shadow-none"
             placeholder="Search leads..."
             aria-label="Search leads"
           />

@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import { Inbox } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { useModalStore } from "@/store/useModalStore";
 
 interface EmptyDataStateProps {
   /**
@@ -27,13 +28,29 @@ interface EmptyDataStateProps {
    * Additional class names for the container.
    */
   className?: string;
+
+  actionModal?: React.ReactNode;
+  modalTitle?: string;
+  modalDescription?: string;
+  modalContent?: React.ReactNode;
 }
 
 /**
  * A reusable empty data state component built using Shadcn UI primitives.
  * Features smooth motion animations and follows the project's design system.
  */
-const EmptyDataState = ({ icon, title, description, action, className }: EmptyDataStateProps) => {
+const EmptyDataState = ({
+  icon,
+  title,
+  description,
+  action,
+  className,
+  actionModal,
+  modalTitle,
+  modalDescription,
+  modalContent,
+}: EmptyDataStateProps) => {
+  const { openModal } = useModalStore();
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -90,6 +107,28 @@ const EmptyDataState = ({ icon, title, description, action, className }: EmptyDa
               className="mt-10"
             >
               {action}
+            </motion.div>
+          )}
+
+          {actionModal && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="mt-10"
+              onClick={() => {
+                if (modalContent) {
+                  openModal({
+                    title: modalTitle,
+                    description: modalDescription,
+                    content: modalContent,
+                  });
+                }
+              }}
+            >
+              {actionModal}
             </motion.div>
           )}
         </CardContent>
