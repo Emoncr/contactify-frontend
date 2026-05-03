@@ -11,23 +11,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
       - name: Install Dependencies
-        run: yarn install # বা npm install
+        run: yarn install --frozen-lockfile
+
       - name: Build Project
         run: yarn build
 
   create-pull-request:
-    name: Create Pull Request to Main
+    name: Create PR to Main
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # সব branch এর history দরকার
+
       - name: Create PR
+        id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: auto-update main from development"
           branch: development
           base: main
           title: "🚀 Auto PR: Development to Main"
-          body: "This PR was automatically created after a successful build on the development branch."
+          body: "Build successful. Auto-created PR from development branch."
+
+      - name: Auto-merge PR # PR তৈরির সাথে সাথে merge করে দেবে
+        if: steps.cpr.outputs.pull-request-number != ''
+        run: gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --squash --auto
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
