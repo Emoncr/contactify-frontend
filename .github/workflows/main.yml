@@ -1,0 +1,33 @@
+name: Development CI/CD
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  build:
+    name: Build and Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: yarn install # বা npm install
+      - name: Build Project
+        run: yarn build
+
+  create-pull-request:
+    name: Create Pull Request to Main
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: auto-update main from development"
+          branch: development
+          base: main
+          title: "🚀 Auto PR: Development to Main"
+          body: "This PR was automatically created after a successful build on the development branch."
