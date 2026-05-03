@@ -1,0 +1,28 @@
+- name: Create and Auto-merge PR
+  env:
+    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  run: |
+    set -euo pipefail
+
+    # Create PR if it doesn't exist; output JSON so we can grab the PR number.
+    pr_number="$(gh pr create \
+      --base main \
+      --head development \
+      --title "🚀 Auto PR: Development to Main" \
+      --body "Build successful. Auto-created PR from development branch." \
+      --json number \
+      --jq .number \
+      2>/dev/null || true)"
+
+    # If it already exists, find the existing PR number.
+    if [ -z "${pr_number}" ]; then
+      pr_number="$(gh pr list \
+        --base main \
+        --head development \
+        --state open \
+        --json number \
+        --jq '.[0].number')"
+    fi
+
+    echo "Merging PR #${pr_number}"
+    gh pr merge "${pr_number}" --squash --auto
