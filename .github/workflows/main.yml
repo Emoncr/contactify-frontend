@@ -1,47 +1,28 @@
-name: Development CI/CD
+- name: Create and Auto-merge PR
+  env:
+    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  run: |
+    set -euo pipefail
 
-on:
-  push:
-    branches:
-      - development
+    # Create PR if it doesn't exist; output JSON so we can grab the PR number.
+    pr_number="$(gh pr create \
+      --base main \
+      --head development \
+      --title "🚀 Auto PR: Development to Main" \
+      --body "Build successful. Auto-created PR from development branch." \
+      --json number \
+      --jq .number \
+      2>/dev/null || true)"
 
-jobs:
-  build:
-    name: Build and Check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    # If it already exists, find the existing PR number.
+    if [ -z "${pr_number}" ]; then
+      pr_number="$(gh pr list \
+        --base main \
+        --head development \
+        --state open \
+        --json number \
+        --jq '.[0].number')"
+    fi
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install Dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Build Project
-        run: yarn build
-
-  create-pull-request:
-    name: Create PR to Main
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Create and Auto-merge PR
-        run: |
-          gh pr create \
-            --base main \
-            --head development \
-            --title "🚀 Auto PR: Development to Main" \
-            --body "Build successful. Auto-created PR from development branch." \
-            || echo "PR already exists"
-          
-          gh pr merge development \
-            --base main \
-            --squash \
-            --auto
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    echo "Merging PR #${pr_number}"
+    gh pr merge "${pr_number}" --squash --auto
